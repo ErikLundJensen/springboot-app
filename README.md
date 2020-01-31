@@ -45,25 +45,26 @@ helm install --name my-release -f values.yaml stable/spring
 | `image.repository`  | location of image to run | `paulczar/petclinic` |
 | `image.tag`         | **server** image tag | `2.1.0.BUILD-SNAPSHOT` |
 | `image.pullPolicy`  | **server** image pull policy | `IfNotPresent` |
-| `serviceAccount.create` | If true, create and use service account | `true` |
+| `serviceAccount.create` | If true, create and use service account | `false` |
 | `serviceAccount.name` | If set override the name of the service account |  |
-| `rbac.create`  | If true, create and use RBAC resources | `true` |
+| `rbac.create`  | If true, create and use RBAC resources | `false` |
 | `resources` | Resource requests and limits | `{}` |
 | `tolerations` | List of node taints to tolerate | `[]` |
 | `nodeSelector` | Node labels for pod assignment | `{}` |
 | `podAnnotations` | Annotations to apploy to the pod | `{}` |
 | `spring.profile` | The spring profile to activate | `nil` |
 | `spring.trustKubernetesCertificates` | ensure spring trusts kubernetes certs | `true` |
-| `spring.config.type` | type of spring config (currently only supports `file`) | `file` |
-| `spring.config.content` | YAML to be placed in `/config/application.yml` | `nil` |
-| `spring.config.secretName` | Name of a secret containing `secret.yml:` key to be placed in `/config/secret.yml` | `nil` |
+| `spring.config` | YAML to be placed in `/config/application.yml` | `nil` |
+| `spring.secrets.names` | Names of a secrets | `nil` |
 | `containerPort` | the port your application listens on | `8080` |
 | `extraEnv` | extra environment variables to pass to your application | `{}` |
-| `livenessProbe` | Values to enable livenessProbe suitable for your application | `{}` |
-| `readinessProbe` | Values to enable readinessProbe suitable for your application | `{}` |
+| `liveness.enabled` | Enable liveness | `{ true }` |
+| `liveness.probe` | Values to enable livenessProbe suitable for your application | see values.yaml |
+| `readiness.enabled` | Values to enable readinessProbe suitable for your application | `{ true }` |
+| `readiness.probe` | Values to enable readinessProbe suitable for your application | see values.yaml |
 | `service.enabled` | Enable creating a service | `true` |
 | `service.type` | Kubernetes Service type | `ClusterIP` |
-| `service.httpPort`| Service HTTP port | `80` |
+| `service.httpPort`| Service HTTP port | `8080` |
 | `service.nodePort` | Kubernetes http node port | `nil` |
 | `service.externalTrafficPolicy` | Enable client source IP preservation | `Cluster` |
 | `service.loadBalancerIP` | LoadBalancerIP for the App | `nil` |

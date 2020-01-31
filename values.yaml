@@ -32,16 +32,14 @@ spring:
   ## customized parameters/config for your spring app.
   ## by default will be rendered to `/config/application.yml`
   config:
-    ## Currently only supports file
-    type: file
-    ## Contents of config in YAML
-    # contents:
-    #   spring:
-    #     database:
-    ## An optional secret that contains a base64 encoded YAML file to be loaded in
-    ## for passwords and other secrets, by default `/config/secret.yml`
-    ## this secret must only have a single key of `secret.yml: |-`.
-    # secretName: configSecret
+    # application.yaml: |-
+    #   foo: bar
+    # other.yaml: |-
+    #   another: value
+  # secrets:
+  #   names:
+  #     - mysecret
+  #     - myothersecret
 
 ## The list of ports that your app listens on
 containerPort: 8080
@@ -72,18 +70,22 @@ resources: {}
 
 ## uncomment and modify the following livenessProbe and readinessProbe.
 ## These defaults should work with anything that uses the spring health actuator.
-livenessProbe:
-  httpGet:
-    path: /actuactor/info
-    port: http
-  initialDelaySeconds: 120
-  periodSeconds: 10
-readinessProbe:
-  httpGet:
-    path: /actuator/health
-    port: http
-  initialDelaySeconds: 5
-  periodSeconds: 10
+liveness:
+  enabled: true
+  probe:
+    httpGet:
+      path: /actuactor/info
+      port: http
+    initialDelaySeconds: 120
+    periodSeconds: 10
+readiness:
+  enabled: true
+  probe:
+    httpGet:
+      path: /actuator/health
+      port: http
+    initialDelaySeconds: 5
+    periodSeconds: 10
 
 nodeSelector: {}
 
