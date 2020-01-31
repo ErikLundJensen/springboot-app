@@ -13,11 +13,11 @@ nameOverride: ""
 fullnameOverride: ""
 
 serviceAccount:
-  create: true
+  create: false
   # name: ~
 
 rbac:
-  create: true
+  create: false
 
 podAnnotations: {}
 #  prometheus.io/scrape: "true"
@@ -72,18 +72,18 @@ resources: {}
 
 ## uncomment and modify the following livenessProbe and readinessProbe.
 ## These defaults should work with anything that uses the spring health actuator.
-livenessProbe: {}
-#  httpGet:
-#    path: /actuator/health
-#    port: http
-#  initialDelaySeconds: 300
-#  periodSeconds: 10
-readinessProbe: {}
-#  httpGet:
-#    path: /actuator/health
-#    port: http
-#  initialDelaySeconds: 60
-#  periodSeconds: 10
+livenessProbe:
+  httpGet:
+    path: /actuactor/info
+    port: http
+  initialDelaySeconds: 120
+  periodSeconds: 10
+readinessProbe:
+  httpGet:
+    path: /actuator/health
+    port: http
+  initialDelaySeconds: 5
+  periodSeconds: 10
 
 nodeSelector: {}
 
@@ -93,7 +93,7 @@ affinity: {}
 
 service:
   enabled: true
-  httpPort: 80
+  httpPort: 8080
   ## If service.type is not set to NodePort, the following statement
   ## will be ignored.
   ##
@@ -114,26 +114,18 @@ ingress:
   ## If true, Ingress will be created.
   ##
   enabled: false
+  dnswildcard: apps.rke1.test.2108.dk
 
   ## Ingress annotations
   ##
-  # annotations:
-  #   kubernetes.io/ingress.class: gce
-  #   kubernetes.io/ingress.class: nginx
-  #   kubernetes.io/tls-acme: 'true'
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    cert-manager.io/cluster-issuer: "letsencrypt-public"
 
   ## hostnames must be provided if Ingress is enabled
   ##
-  # hosts:
-  #   - spring.example.io
-
-  ## Ingress TLS configuration secrets
-  ## Must be manually created in the namespace
-  ##
-  # tls:
-  #   - secretName: spring-tls
-  #     hosts:
-  #       - spring.example.io
+  hosts:
+     - apps.rke1.test.2108.dk
 
 podDisruptionBudget:
   enabled: false
