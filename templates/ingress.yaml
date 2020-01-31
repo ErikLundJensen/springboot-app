@@ -17,7 +17,7 @@ metadata:
   namespace: {{ .Release.Namespace | quote }}
 spec:
   rules:
-    - host: {{ template "spring.name" . }}-{{ .Release.Namespace }}-{{ .Values.ingress.dnswildcard }}
+    - host: {{ template "spring.name" . }}-{{ .Release.Namespace }}.{{ .Values.ingress.dnswildcard }}
       http:
         paths:
           - path: /
@@ -26,6 +26,6 @@ spec:
               servicePort: {{ $httpPort }}
   tls:
     - hosts:
-        - {{ template "spring.name" . }}-{{ .Release.Namespace }}-{{ .Values.ingress.dnswildcard }}
+        - {{ template "spring.name" . }}-{{ .Release.Namespace }}.{{ .Values.ingress.dnswildcard }}
       secretName: {{ template "spring.name" . }}-ingress-secret
 {{- end -}}
