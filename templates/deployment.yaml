@@ -28,14 +28,16 @@ spec:
         {{ toYaml .Values.securityContext | indent 8 }}
       containers:
         - name: {{ .Chart.Name }}
+          {{- if .Values.container.debug.shellAtStartup }}
           command: ["/bin/sh"]
           args: ["-c", "while true; do echo hello; sleep 10;done"]
+          {{- end }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
             {{- if .Values.spring.debug }}
-            -  name: debug
-               value: {{ .Values.spring.debug }}
+            - name: debug
+              value: {{ .Values.spring.debug }}
             {{- end }}
             {{- if hasKey .Values.spring "profile" }}
             - name: SPRING_PROFILES_ACTIVE
