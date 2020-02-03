@@ -23,9 +23,9 @@ podAnnotations: {}
 #  prometheus.io/scrape: "true"
 #  prometheus.io/path: "/actuator/prometheus"
 
-#container:
-#  debug:
-#    shellAtStartup: true
+container:
+  debug:
+    shellAtStartup: false
 
 spring:
   #debug: true

@@ -28,7 +28,7 @@ spec:
         {{ toYaml .Values.securityContext | indent 8 }}
       containers:
         - name: {{ .Chart.Name }}
-          {{- if .Values.container.debug.shellAtStartup }}
+          {{- if .Values.container.debug.shellAtStartup .Values.container.debug.shellAtStartup }}
           command: ["/bin/sh"]
           args: ["-c", "while true; do echo hello; sleep 10;done"]
           {{- end }}
