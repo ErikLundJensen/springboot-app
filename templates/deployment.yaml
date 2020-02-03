@@ -29,8 +29,8 @@ spec:
       containers:
         - name: {{ .Chart.Name }}
           {{- if .Values.container.debug.shellAtStartup }}
-            command: ["/bin/sh"]
-            args: ["-c", "while true; do echo hello; sleep 10;done"]
+          command: ["/bin/sh"]
+          args: ["-c", "while true; do echo hello; sleep 10;done"]
           {{- end }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
