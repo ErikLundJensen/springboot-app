@@ -28,7 +28,8 @@ podAnnotations: {}
 #    shellAtStartup: true
 
 spring:
-  debug: "false"
+  debug: false
+
   ## Uncomment if you want to activate a specfic spring profile
   # profile: kubernetes
   ## Ensures that Spring trusts Kubernetes certificate for use with

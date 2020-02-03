@@ -35,9 +35,9 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
-            {{- if .Values.spring.debug }}
+            {{- if .Values.spring.debug  }}
             - name: debug
-              value: {{ .Values.spring.debug }}
+              value: {{ .Values.spring.debug | quote }}
             {{- end }}
             {{- if hasKey .Values.spring "profile" }}
             - name: SPRING_PROFILES_ACTIVE
