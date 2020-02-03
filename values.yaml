@@ -23,7 +23,12 @@ podAnnotations: {}
 #  prometheus.io/scrape: "true"
 #  prometheus.io/path: "/actuator/prometheus"
 
+#container:
+#  debug:
+#    shellAtStartup: true
+
 spring:
+  debug: "false"
   ## Uncomment if you want to activate a specfic spring profile
   # profile: kubernetes
   ## Ensures that Spring trusts Kubernetes certificate for use with
