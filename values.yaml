@@ -31,7 +31,7 @@ spring:
   trustKubernetesCertificates: true
   ## customized parameters/config for your spring app.
   ## by default will be rendered to `/config/application.yml`
-  config:
+  #config:
     #   foo: bar
     #   another: value
   # secrets:
