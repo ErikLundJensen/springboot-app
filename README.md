@@ -52,6 +52,8 @@ helm install --name my-release -f values.yaml stable/spring
 | `tolerations` | List of node taints to tolerate | `[]` |
 | `nodeSelector` | Node labels for pod assignment | `{}` |
 | `podAnnotations` | Annotations to apploy to the pod | `{}` |
+| `container.debug.shellAtStartup` | Start container in shell waiting mode instead of running Spring Boot app | `false` |
+| `spring.debug` | Debug Spring Boot | `false` |
 | `spring.profile` | The spring profile to activate | `nil` |
 | `spring.trustKubernetesCertificates` | ensure spring trusts kubernetes certs | `true` |
 | `spring.config` | YAML to be placed in `/config/application.yml` | `nil` |

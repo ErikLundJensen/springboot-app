@@ -28,7 +28,7 @@ podAnnotations: {}
 #    shellAtStartup: true
 
 spring:
-  debug: false
+  #debug: true
 
   ## Uncomment if you want to activate a specfic spring profile
   # profile: kubernetes
