@@ -10,5 +10,6 @@ metadata:
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
 data:
-  {{ toYaml .Values.spring.config | indent 2  }}
+  application.yaml: |-
+    {{ toYaml .Values.spring.config | indent 4  }}
 {{- end }}

@@ -32,9 +32,7 @@ spring:
   ## customized parameters/config for your spring app.
   ## by default will be rendered to `/config/application.yml`
   config:
-    # application.yaml: |-
     #   foo: bar
-    # other.yaml: |-
     #   another: value
   # secrets:
   #   names:
