@@ -7,7 +7,7 @@ replicaCount: 1
 image:
   repository: paulczar/petclinic
   tag: 2.1.0.BUILD-SNAPSHOT
-  pullPolicy: IfNotPresent
+  pullPolicy: Always
 
 nameOverride: ""
 fullnameOverride: ""
