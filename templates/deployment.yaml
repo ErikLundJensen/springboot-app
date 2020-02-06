@@ -35,7 +35,7 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
-            {{- if .Values.spring.debug  }}
+            {{- if hasKey .Values.spring "debug" }}
             - name: debug
               value: {{ .Values.spring.debug | quote }}
             {{- end }}
@@ -43,12 +43,10 @@ spec:
             - name: SPRING_PROFILES_ACTIVE
               value: {{ .Values.spring.profile }}
             {{- end }}
-              {{- if .Values.spring.trustKubernetesCertificates }}
+            {{- if .Values.spring.trustKubernetesCertificates }}
             - name: KUBERNETES_TRUST_CERTIFICATES
               value: "true"
-              {{- end }}
-            - name: SPRING_CONFIG_LOCATION
-              value: "file:/etc/springboot/config/"
+            {{- end }}
             {{- if .Values.secrets }}
             - name: SPRING_CONFIG_ADDITIONAL_LOCATION
               value: "file:/etc/springboot/secret"
@@ -61,7 +59,7 @@ spec:
             - name: data
               mountPath: /data
             - name: config-file
-              mountPath: /etc/springboot/config
+              mountPath: /config
             {{- if .Values.secrets }}
             - name: secrets
               mountPath: /etc/springboot/secret
